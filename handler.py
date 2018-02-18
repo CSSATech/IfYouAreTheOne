@@ -21,7 +21,8 @@ class Handle(object):
 		l = [token, timestamp, nonce]
 		l.sort()
 		sha1 = hashlib.sha1()
-		map(sha1.update, l)
+		for e in l:
+			sha1.update(e)
 		hashcode = sha1.hexdigest()
 
 		print('GET - hashcode: {}, signature: {}'.format(hashcode, signature))
