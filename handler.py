@@ -2,11 +2,13 @@ import hashlib
 import receive
 import reply
 import time
-
+import random
 
 users = {} # our database
-
-
+index_female = 0
+index_male = 0
+random_numbers = random.sample(range(1, 10000), 666)
+	
 class Handle(object):
 	def get(self, request):
 		params = request.args
@@ -49,10 +51,20 @@ class Handle(object):
 				replyMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
 				return replyMsg.send()
 
+			if content == '我是女生':
+				replyMsg = reply.TextMsg(toUser, fromUser, random_numbers[index_female])
+				index_female += 1
+			elif content == '我是男生':
+				replyMsg = reply.TextMsg(toUser, fromUser, random_numbers[index_male])
+				index_male += 1
+			else:
+				replyMsg = reply.TextMsg(toUser, fromUser, 'shut the fuck up')
+				return replyMsg.send()
+				
 			users[toUser] = {}
 			users[toUser]['createTime'] = now
 
-			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
+			# replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
 			return replyMsg.send()
 
 		print("Invalid POST request")
