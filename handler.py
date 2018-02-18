@@ -38,6 +38,8 @@ class Handle(object):
 		return ""
 
 	def post(self, request):
+		global index_male, index_female, random_numbers
+
 		params = request.data
 		recMsg = receive.parse_xml(params)
 
