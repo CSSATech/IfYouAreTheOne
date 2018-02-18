@@ -4,7 +4,7 @@ import reply
 import time
 
 
-users = {}
+users = {} # our database
 
 
 class Handle(object):
