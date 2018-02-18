@@ -33,8 +33,7 @@ class Handle(object):
 
 		if hashcode == signature:
 			return echostr
-		else:
-			return ""
+		return ""
 
 	def post(self, request):
 		params = request.data
@@ -55,7 +54,7 @@ class Handle(object):
 
 			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
 			return replyMsg.send()
-		else:
-			print("Invalid POST request")
-			return "success"
+
+		print("Invalid POST request")
+		return "success"
 
