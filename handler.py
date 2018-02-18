@@ -41,23 +41,19 @@ class Handle(object):
 		recMsg = receive.parse_xml(params)
 
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
-			createTime = recMsg.CreateTime
-			toUser = recMsg.FromUserName # wechat user
-			fromUser = recMsg.ToUserName # our platform
-			content = recMsg.Content.decode()
-			now = time.time()
+			toUser = recMsg.FromUserName # wechat user, type 'str'
+			fromUser = recMsg.ToUserName # our platform, type 'str'
+			content = recMsg.Content.decode() # type 'str'
+			now = int(recMsg.CreateTime) # type 'int'
 
-			print(type(toUser))
-			print(type(createTime))
-			print(type(fromUser))
-			print(type(content))
-			print(toUser)
-			print(createTime)
-			print(fromUser)
-			print(content)
+			if toUser in users and now - users[toUser]['createTime'] < 600:
+				replayMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
+				return replyMsg.send()
+
+			users[toUser] = {}
+			users[toUser]['createTime'] = now
 
 			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
-
 			return replyMsg.send()
 		else:
 			print("Invalid POST request")
