@@ -43,5 +43,5 @@ class Handle(object):
             else:
                 print("暂且不处理")
                 return "success"
-        except Exception, Argment:
-            return Argment
+        except Exception, Argument:
+            return Argument
