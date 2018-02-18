@@ -51,6 +51,10 @@ class Handle(object):
 			print(type(createTime))
 			print(type(fromUser))
 			print(type(content))
+			print(toUser)
+			print(createTime)
+			print(fromUser)
+			print(content)
 
 			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
 
