@@ -1,6 +1,10 @@
 import hashlib
 import receive
 import reply
+import time
+
+
+users = {}
 
 
 class Handle(object):
@@ -37,11 +41,21 @@ class Handle(object):
 		recMsg = receive.parse_xml(params)
 
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
-			toUser = recMsg.FromUserName
-			fromUser = recMsg.ToUserName
+			createTime = recMsg.CreateTime
+			toUser = recMsg.FromUserName # wechat user
+			fromUser = recMsg.ToUserName # our platform
 			content = recMsg.Content.decode()
+			now = time.time()
+
+			print(type(toUser))
+			print(type(createTime))
+			print(type(fromUser))
+			print(type(content))
+
 			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
+
 			return replyMsg.send()
 		else:
 			print("Invalid POST request")
 			return "success"
+
