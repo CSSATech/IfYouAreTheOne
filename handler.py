@@ -37,7 +37,6 @@ class Handle(object):
 		recMsg = receive.parse_xml(params)
 
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
-			userId = recMsg.
 			toUser = recMsg.FromUserName
 			fromUser = recMsg.ToUserName
 			content = recMsg.Content.decode()
