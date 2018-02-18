@@ -4,11 +4,13 @@ import reply
 import time
 import random
 
+
 users = {} # our database
 index_female = 0
 index_male = 0
 random_numbers = random.sample(range(1, 10000), 666)
-	
+
+
 class Handler(object):
 	def get(self, request):
 		params = request.args
@@ -49,7 +51,7 @@ class Handler(object):
 			content = recMsg.Content.decode() # type 'str'
 			now = int(recMsg.CreateTime) # type 'int'
 
-			if toUser in users and now - users[toUser]['createTime'] < 600:
+			if toUser in users and now - users[toUser]['createTime'] < 5:
 				replyMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
 				return replyMsg.send()
 
