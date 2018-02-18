@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-# filename: reply.py
 import time
+
+
 class Msg(object):
     def __init__(self):
         pass

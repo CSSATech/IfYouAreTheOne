@@ -1,11 +1,16 @@
-from flask import Flask
+from flask import Flask, request
+from handler import Handle
 
 
 app = Flask(__name__)
+handler = Handle()
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def handle():
-	return 'hello_world'
+	if request.method == 'GET':
+		handler.get(request)
+	elif request.method == 'POST':
+		handler.post(request)
 
 if __name__ == '__main__':
 	app.run()
