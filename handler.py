@@ -33,19 +33,15 @@ class Handle(object):
 			return ""
 
 	def post(self, request):
-		params = request.form
+		params = request.data
 		recMsg = receive.parse_xml(params)
-
-		print(params)
-		print(recMsg)
-		print(recMsg.MsgType)
 
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
 			toUser = recMsg.FromUserName
 			fromUser = recMsg.ToUserName
-			content = "test"
+			content = recMsg.Content
 			replyMsg = reply.TextMsg(toUser, fromUser, content)
 			return replyMsg.send()
 		else:
-			print("暂且不处理")
+			print("Invalid POST request")
 			return "success"
