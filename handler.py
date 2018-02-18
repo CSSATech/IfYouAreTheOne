@@ -47,7 +47,7 @@ class Handle(object):
 			now = int(recMsg.CreateTime) # type 'int'
 
 			if toUser in users and now - users[toUser]['createTime'] < 600:
-				replayMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
+				replyMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
 				return replyMsg.send()
 
 			users[toUser] = {}
