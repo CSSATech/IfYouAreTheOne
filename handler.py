@@ -9,7 +9,7 @@ index_female = 0
 index_male = 0
 random_numbers = random.sample(range(1, 10000), 666)
 	
-class Handle(object):
+class Handler(object):
 	def get(self, request):
 		params = request.args
 

@@ -1,9 +1,12 @@
+import logging
 from flask import Flask, request
-from handler import Handle
+from handler import Handler
 
 
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 app = Flask(__name__)
-handler = Handle()
+handler = Handler()
 
 @app.route('/', methods=['GET', 'POST'])
 def handle():
