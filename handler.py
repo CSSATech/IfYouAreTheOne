@@ -12,6 +12,9 @@ class Handle(object):
 		nonce = params.get('nonce')
 		echostr = params.get('echostr')
 
+		if None in [signature, timestamp, nonce, echostr]:
+			return ""
+
 		token = 'iajboiJ3ighjIJFIOJ90j0j4j0j'
 	
 		# hashing and mapping
