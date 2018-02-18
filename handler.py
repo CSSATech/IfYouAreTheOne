@@ -8,7 +8,7 @@ import random
 users = {} # our database
 index_female = 0
 index_male = 0
-random_numbers = random.sample(range(1, 10000), 666)
+random_numbers = ['%04d' % num for num in random.sample(range(1, 1000), 666)]
 
 
 class Handler(object):
