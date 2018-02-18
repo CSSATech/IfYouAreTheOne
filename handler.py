@@ -37,10 +37,11 @@ class Handle(object):
 		recMsg = receive.parse_xml(params)
 
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
+			userId = recMsg.
 			toUser = recMsg.FromUserName
 			fromUser = recMsg.ToUserName
-			content = recMsg.Content
-			replyMsg = reply.TextMsg(toUser, fromUser, content)
+			content = recMsg.Content.decode()
+			replyMsg = reply.TextMsg(toUser, fromUser, 'From: {}, To: {}, {}'.format(fromUser, toUser, content))
 			return replyMsg.send()
 		else:
 			print("Invalid POST request")
