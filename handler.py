@@ -34,8 +34,12 @@ class Handle(object):
 
 	def post(self, request):
 		params = request.form
-
 		recMsg = receive.parse_xml(params)
+
+		print(params)
+		print(recMsg)
+		print(recMsg.MsgType)
+
 		if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
 			toUser = recMsg.FromUserName
 			fromUser = recMsg.ToUserName
