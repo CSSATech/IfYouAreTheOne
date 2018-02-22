@@ -10,7 +10,15 @@ index_female = 0
 index_male = 0
 random_numbers = ['%04d' % num for num in random.sample(range(1, 10000), 666)]
 
+def checkSequence(num):
+	return int(num[3]) - int(num[2]) == 1 and \
+		int(num[2]) - int(num[1]) == 1 and \
+		int(num[1]) - int(num[0]) == 1
 
+for i in randon_numbers:
+	if checkSequence(i):
+		random_numbers.remove(i)
+	
 class Handler(object):
 	def get(self, request):
 		params = request.args
