@@ -59,8 +59,8 @@ class Handler(object):
 			content = recMsg.Content.decode() # type 'str'
 			now = int(recMsg.CreateTime) # type 'int'
 
-			if toUser in users and now - users[toUser]['createTime'] < 5:
-				replyMsg = reply.TextMsg(toUser, fromUser, 'fuck off')
+			if toUser in users and now - users[toUser]['createTime'] < 600:
+				replyMsg = reply.TextMsg(toUser, fromUser, '您已经取得了配对码 如有疑问请联系主持人或其他工作人员')
 				return replyMsg.send()
 
 			if content == '我是女生':
@@ -70,7 +70,7 @@ class Handler(object):
 				replyMsg = reply.TextMsg(toUser, fromUser, random_numbers[index_male])
 				index_male += 1
 			else:
-				replyMsg = reply.TextMsg(toUser, fromUser, 'shut the fuck up')
+				replyMsg = reply.TextMsg(toUser, fromUser, '请重新输入：我是男生/我是女生获取非诚勿扰线下活动配对码')
 				return replyMsg.send()
 				
 			users[toUser] = {}
